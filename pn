@@ -1,14 +1,38 @@
 #!/usr/bin/env python3
-from os import sys,system
-ps=[]
+
+from os import sys,system,path
+import requests
+import time
+
+def jh(s,ps):
+    p=requests.get(s,stream=True,timeout=60)
+    pl=bytes()
+    sk=time.time()
+    for pn in p.iter_content(1024):
+        if time.time()-sk>1800:return
+        pl=pl+pn
+        if len(pl)>1000000:
+            return
+    open(ps,'wb').write(pl)
+
+def prp(ns):
+    sn='prpt'
+    if len(ns)!=3:return
+    if ns[2]!=sn:
+        jh(ns[2],sn)
+    if not path.isfile(sn):return
+
+ps=[prp]
+
 def pk():
-    if len(sys.argv)==2:
-        if sys.argv[1]=='s':
+    if len(sys.argv)>1:
+        if sys.argv[1]=='s' and len(sys.argv)==2:
             print(len(ps))
             return
         k=0
         try:
             k=int(sys.argv[1])
         except:pass 
-        print(k)
+        if k<=len(ps) and k!=0:
+            ps[k-1](sys.argv)
 pk()
