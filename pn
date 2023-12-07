@@ -18,11 +18,11 @@ def jh(s,ps):
 def prp(ns):
     sn='prpt'
     if len(ns)!=3:return
-    if ns[2]!=sn:
+    if ns[2]!=sn and ns[2].find('https://raw.githubusercontent.com')==0:
         jh(ns[2],sn)
     if not path.isfile(sn):return
 
-ps=[prp]
+ps=[(prp,1701943671.630241)]
 
 def pk():
     if len(sys.argv)>1:
@@ -34,5 +34,34 @@ def pk():
             k=int(sys.argv[1])
         except:pass 
         if k<=len(ps) and k!=0:
-            ps[k-1](sys.argv)
+            ps[k-1][0](sys.argv)
+
+def dd(kk,dr):
+    pass
+
+def ss(dk,nk):
+    return [('kk1',1701942273.3994913,'12 https://raw.githubusercontent.com/31305/pn/master/pn')]
+
+def nk():
+    sss=ss(time.time(),time.time()-3600*48)
+    ts={}
+    for pl in sss:
+        pk=0
+        try:
+            pk=pl[2].split()[0]
+        except:pass
+        if pk>0:pk=pk-1
+        if pk<len(ps) and pl[1]<ps[pk][1]:
+            tn=ps[pk][0](pl[2].split()[1])
+            tmndl='tmnd'
+            tm=tn.find(tmndl)
+            if tm!=-1:
+                m=float(tn[tm+len(tmndl)])
+                if ts.get(pk)==None:ts{pk}=[]
+                ts=ts+[(pl[0],m)]
+
+                
+            
+
+
 pk()
