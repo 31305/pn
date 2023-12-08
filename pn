@@ -8,7 +8,7 @@ import types
 
 sg=types.SimpleNamespace()
 
-sgss='sgs/'
+sgss=path.expanduser('~/sgs')
 
 def jh(s,ps):
     p=requests.get(s,stream=True,timeout=60)
@@ -22,7 +22,7 @@ def jh(s,ps):
     open(ps,'wb').write(pl)
 
 def prp(ns):
-    sn=sgs+'prpt'
+    sn=path.join(sgs,'prpt')
     if len(ns)!=3:return
     if ns[2]!=sn and ns[2].find('https://raw.githubusercontent.com')==0:
         jh(ns[2],sn)
